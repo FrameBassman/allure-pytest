@@ -202,7 +202,8 @@ terraform.rc
 .DS_Store
 .vscode
 .zip
-.allure
+allure-report
+allure-results
 
 # Allow to upload the liquibase libraries
 !liquibase/internal/lib

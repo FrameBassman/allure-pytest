@@ -25,11 +25,19 @@ steps:
   displayName: Add poetry to PATH
 
 - script: |
-    poetry run pytest --alluredir=.allure
+    sudo apt-get install -y allure
+  displayName: install allure
+
+- script: |
+    poetry run pytest --alluredir=allure-results
   displayName: 'pytest'
+
+- script: |
+    allure generate
+  displayName: generate allure report
 
 # https://marketplace.visualstudio.com/items?itemName=MichaelClay.azure-pipelines-allure-report-viewer
 - task: PublishAllureReport@1
   displayName: 'Publish Allure Report'
   inputs:
-    reportDir: '.allure'
+    reportDir: 'allure-report'
