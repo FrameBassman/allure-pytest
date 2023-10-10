@@ -1,0 +1,29 @@
+# Python package
+# Create and test a Python package on multiple Python versions.
+# Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/python
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.8'
+  displayName: 'Use Python 3.8'
+
+- script: |
+    curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
+    export PATH=$PATH:$HOME/.poetry/bin
+    poetry install --no-root
+  displayName: 'Install dependencies'
+
+- script: echo "##vso[task.prependpath]$HOME/.poetry/bin"
+  displayName: Add poetry to PATH
+
+- script: |
+    poetry pytest
+  displayName: 'pytest'
