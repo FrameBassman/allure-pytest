@@ -25,5 +25,12 @@ steps:
   displayName: Add poetry to PATH
 
 - script: |
-    poetry run pytest
+    poetry run pytest --junitxml=test-unit.xml
   displayName: 'pytest'
+
+- task: PublishTestResults@2
+  condition: succeededOrFailed()
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/test-*.xml'
+    failTaskOnFailedTests: true
