@@ -29,7 +29,8 @@ steps:
   displayName: 'pytest'
 
 - script: |
-    apt-get install -y allure
+    wget https://github.com/allure-framework/allure2/releases/download/2.24.1/allure_2.24.1-1_all.deb
+    sudo dpkg -i allure_2.24.1-1_all.deb
     allure generate
   displayName: install allure and generate allure report
 
