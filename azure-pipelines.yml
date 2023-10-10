@@ -25,5 +25,5 @@ steps:
   displayName: Add poetry to PATH
 
 - script: |
-    poetry pytest
+    poetry run pytest
   displayName: 'pytest'
