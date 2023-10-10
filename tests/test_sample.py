@@ -2,5 +2,6 @@ import pytest
 from hamcrest import equal_to, assert_that
 
 class TestSample():
-    def test_something(self):
-        assert_that(1, equal_to(1))
+    def test_something(self, first_steps, second_steps):
+        first_steps.create_stuff()
+        second_steps.verify_stuff()
