@@ -25,12 +25,10 @@ steps:
   displayName: Add poetry to PATH
 
 - script: |
-    poetry run pytest --junitxml=test-unit.xml
+    poetry run pytest --alluredir=.allure
   displayName: 'pytest'
 
-- task: PublishTestResults@2
-  condition: succeededOrFailed()
+- task: PublishAllureReport@1
+  displayName: 'Publish Allure Report'
   inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/test-*.xml'
-    failTaskOnFailedTests: true
+    reportDir: '.allure'
