@@ -28,6 +28,7 @@ steps:
     poetry run pytest --alluredir=.allure
   displayName: 'pytest'
 
+# https://marketplace.visualstudio.com/items?itemName=MichaelClay.azure-pipelines-allure-report-viewer
 - task: PublishAllureReport@1
   displayName: 'Publish Allure Report'
   inputs:
