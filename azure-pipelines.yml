@@ -9,6 +9,7 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+lockBehavior: sequential
 steps:
 - task: UsePythonVersion@0
   inputs:
